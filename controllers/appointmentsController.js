@@ -8,7 +8,6 @@ module.exports = app => {
   app.post('/appointments', (req, res) => {
     const newAppointment = req.body;
 
-    Appointments.add(newAppointment);
-    res.send('post test');
+    Appointments.add(newAppointment, res);
   });
 };

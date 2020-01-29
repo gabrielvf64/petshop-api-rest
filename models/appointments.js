@@ -3,7 +3,7 @@ const moment = require('moment');
 const connection = require('../infra/connection');
 
 class Appointments {
-  add(appointment) {
+  add(appointment, res) {
     const dataCriacao = moment().format('YYYY-MM-DD HH:MM:SS');
 
     const data = moment(appointment.data, 'DD/MM/YYYY').format(
@@ -20,9 +20,9 @@ class Appointments {
 
     connection.query(sql, atendimentoDatado, (error, results) => {
       if (error) {
-        console.log(error);
+        res.status(400).json(error);
       } else {
-        console.log(results);
+        res.status(201).json(results);
       }
     });
   }
