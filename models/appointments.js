@@ -46,7 +46,7 @@ class Appointments {
         if (error) {
           res.status(400).json(error);
         } else {
-          res.status(201).json(results);
+          res.status(201).json(appointment);
         }
       });
     }
@@ -91,7 +91,19 @@ class Appointments {
       if (error) {
         res.status(400).json(error);
       } else {
-        res.status(200).json(results);
+        res.status(200).json({ ...values, id });
+      }
+    });
+  }
+
+  delete(id, res) {
+    const sql = 'DELETE FROM appointments where id=?';
+
+    connection.query(sql, id, (error, results) => {
+      if (error) {
+        res.status(400).json(error);
+      } else {
+        res.status(200).json({ id });
       }
     });
   }

@@ -23,4 +23,10 @@ module.exports = app => {
 
     appointments.update(id, values, res);
   });
+
+  app.delete('/appointments/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+
+    appointments.delete(id, res);
+  });
 };
