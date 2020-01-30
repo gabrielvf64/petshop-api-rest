@@ -16,4 +16,11 @@ module.exports = app => {
 
     appointments.add(newAppointment, res);
   });
+
+  app.patch('/appointments/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const values = req.body;
+
+    appointments.update(id, values, res);
+  });
 };

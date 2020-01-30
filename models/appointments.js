@@ -77,6 +77,24 @@ class Appointments {
       }
     });
   }
+
+  update(id, values, res) {
+    if (values.data) {
+      values.data = moment(values.data, 'DD/MM/YYYY').format(
+        'YYYY-MM-DD HH:MM:SS'
+      );
+    }
+
+    const sql = 'UPDATE appointments SET ? WHERE id=?';
+
+    connection.query(sql, [values, id], (error, results) => {
+      if (error) {
+        res.status(400).json(error);
+      } else {
+        res.status(200).json(results);
+      }
+    });
+  }
 }
 
 module.exports = new Appointments();
